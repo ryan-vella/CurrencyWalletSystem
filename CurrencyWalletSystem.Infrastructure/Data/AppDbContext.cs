@@ -8,5 +8,6 @@ namespace CurrencyWalletSystem.Infrastructure.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<CurrencyRate> CurrencyRates => Set<CurrencyRate>();
+        public DbSet<Wallet> Wallets => Set<Wallet>();
     }
 }
