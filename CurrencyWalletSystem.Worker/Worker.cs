@@ -1,5 +1,8 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace CurrencyWalletSystem.Worker;
 
+[ExcludeFromCodeCoverage]
 public class Worker : BackgroundService
 {
     private readonly ILogger<Worker> _logger;

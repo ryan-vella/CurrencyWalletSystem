@@ -1,3 +1,4 @@
+using CurrencyWalletSystem.API.Authorization;
 using CurrencyWalletSystem.Gateway.Interfaces;
 using CurrencyWalletSystem.Gateway.Services;
 using CurrencyWalletSystem.Infrastructure.Data;
@@ -7,8 +8,10 @@ using CurrencyWalletSystem.Infrastructure.Services;
 using CurrencyWalletSystem.Infrastructure.Strategies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.RateLimiting;
 
+[ExcludeFromCodeCoverage]
 public class Program
 {
     public static void Main(string[] args)
@@ -30,7 +33,10 @@ public class Program
     /// <param name="builder">The builder for configuring services.</param>
     private static void ConfigureServices(WebApplicationBuilder builder)
     {
-        builder.Services.AddControllers();
+        builder.Services.AddControllers(options =>
+        {
+            options.Filters.Add<ApiKeyAuthorizationFilter>();
+        });
         builder.Services.AddMemoryCache();
 
         ConfigureDbContext(builder);
@@ -144,9 +150,26 @@ public class Program
     /// <param name="builder">The builder for configuring services.</param>
     private static void ConfigureSwagger(WebApplicationBuilder builder)
     {
-        builder.Services.AddSwaggerGen(c =>
+        builder.Services.AddSwaggerGen(options =>
         {
-            c.SwaggerDoc("v1", new OpenApiInfo { Title = "CurrencyWalletSystem API", Version = "v1" });
+            options.SwaggerDoc("v1", new OpenApiInfo { Title = "CurrencyWalletSystem API", Version = "v1" });
+            options.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme
+            {
+                In = ParameterLocation.Header,
+                Name = "x-api-key",
+                Type = SecuritySchemeType.ApiKey,
+                Description = "API Key needed to access endpoints"
+            });
+            options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "ApiKey" }
+                        },
+                        Array.Empty<string>()
+                    }
+                });
         });
     }
 

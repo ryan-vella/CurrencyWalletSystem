@@ -2,7 +2,9 @@ using CurrencyWalletSystem.Gateway.Interfaces;
 using CurrencyWalletSystem.Gateway.Services;
 using CurrencyWalletSystem.Gateway.Settings;
 using CurrencyWalletSystem.Infrastructure.Extensions;
+using System.Diagnostics.CodeAnalysis;
 
+[ExcludeFromCodeCoverage]
 public class Program
 {
     public static async Task Main(string[] args)
