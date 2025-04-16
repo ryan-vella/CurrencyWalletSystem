@@ -5,6 +5,10 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyWalletSystem.Gateway", "CurrencyWalletSystem.Gateway\CurrencyWalletSystem.Gateway.csproj", "{22A346E5-95FD-53C8-52C9-C42BB109ECA2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyWalletSystem.Worker", "CurrencyWalletSystem.Worker\CurrencyWalletSystem.Worker.csproj", "{F4282713-58E6-936B-CC18-BBE346CF1E9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CurrencyWalletSystem.Infrastructure", "CurrencyWalletSystem.Infrastructure\CurrencyWalletSystem.Infrastructure.csproj", "{1C8E3DBB-EE46-E8DD-82DB-3C538648E552}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{22A346E5-95FD-53C8-52C9-C42BB109ECA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22A346E5-95FD-53C8-52C9-C42BB109ECA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22A346E5-95FD-53C8-52C9-C42BB109ECA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4282713-58E6-936B-CC18-BBE346CF1E9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4282713-58E6-936B-CC18-BBE346CF1E9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4282713-58E6-936B-CC18-BBE346CF1E9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4282713-58E6-936B-CC18-BBE346CF1E9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C8E3DBB-EE46-E8DD-82DB-3C538648E552}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C8E3DBB-EE46-E8DD-82DB-3C538648E552}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C8E3DBB-EE46-E8DD-82DB-3C538648E552}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C8E3DBB-EE46-E8DD-82DB-3C538648E552}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
