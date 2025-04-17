@@ -30,7 +30,10 @@ namespace CurrencyWalletSystem.Infrastructure.Jobs
         public async Task Execute(IJobExecutionContext context)
         {
             var rates = await FetchRatesAsync();
-            await PersistRatesAsync(rates);
+            if (rates.Count > 0)
+            {
+                await PersistRatesAsync(rates);
+            }
         }
 
         /// <summary>
