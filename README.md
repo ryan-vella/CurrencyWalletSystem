@@ -69,26 +69,28 @@ x-api-key: your-secure-api-key
 
 ### ⚙️ Strategies
 
-```
-Strategy Type	Description
-AddFunds	Increases wallet balance
-SubtractFunds	Decreases balance, fails if insufficient
-ForceSubtractFunds	Decreases balance without checks
-```
+| Strategy Type | Description | 
+|---------------|----------------------------------|
+| **AddFunds**   | Increases wallet balance                      
+| **SubtractFunds**    | Decreases balance, fails if insufficient           | 
+| **ForceSubtractFunds**  | Decreases balance without checks           |            
+
 ### 🛡️ Rate Limiting
-10 requests per minute per IP
-
-Status code 429 on limit exceeded
-
-Includes Retry-After: 60 header
+- 10 requests per minute per IP
+- Status code 429 on limit exceeded
+- Includes Retry-After: 60 header
 
 ### 🧠 Architecture Overview
-Controllers: API endpoints
+- Controllers: API endpoints
+- Services: Core logic and orchestration
+- Strategies: Pluggable logic for balance changes
+- Filters: API key authentication
+- EF Core: Data persistence and querying
 
-Services: Core logic and orchestration
-
-Strategies: Pluggable logic for balance changes
-
-Filters: API key authentication
-
-EF Core: Data persistence and querying
+### 📦 Tech Stack
+- .NET Core 9 Web API
+- Entity Framework Core
+- SQL-based exchange rates
+- Strategy pattern
+- Built-in rate limiting
+- API Key-based authorization
