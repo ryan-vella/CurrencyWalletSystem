@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using System.Reflection;
 
-namespace CurrencyWalletSystem.Tests.Instrastructure.Services
+namespace CurrencyWalletSystem.Tests.Infrastructure.Services
 {
     public class ExchangeRatePersisterTests
     {
