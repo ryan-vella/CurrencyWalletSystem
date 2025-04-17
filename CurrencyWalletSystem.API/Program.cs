@@ -89,6 +89,8 @@ public class Program
         builder.Services.AddSingleton<IWalletStrategyFactory, WalletStrategyFactory>();
         builder.Services.AddScoped<IWalletService, WalletService>();
         builder.Services.AddScoped<ICurrencyRateCache, CurrencyRateCache>();
+        builder.Services.AddScoped<IRawSqlExecutor, EfCoreRawSqlExecutor>();
+        builder.Services.AddScoped<ISqlExecutor, SqlExecutor>();
     }
 
     /// <summary>

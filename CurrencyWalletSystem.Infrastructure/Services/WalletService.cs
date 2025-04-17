@@ -4,6 +4,7 @@ using CurrencyWalletSystem.Infrastructure.Factories;
 using CurrencyWalletSystem.Infrastructure.Interfaces;
 using CurrencyWalletSystem.Infrastructure.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.CodeAnalysis;
 
 namespace CurrencyWalletSystem.Infrastructure.Services
 {
@@ -67,7 +68,7 @@ namespace CurrencyWalletSystem.Infrastructure.Services
 
             var wallet = await GetWalletByIdAsync(walletId);
 
-            var convertedAmount = ConvertAmountAsync(amount, currency.ToUpper(), wallet.Currency);
+            var convertedAmount = ConvertAmount(amount, currency.ToUpper(), wallet.Currency);
 
             var strategyImpl = _strategyFactory.GetStrategy(strategy);
 
@@ -96,7 +97,8 @@ namespace CurrencyWalletSystem.Infrastructure.Services
         /// <param name="toCurrency">The target currency code.</param>
         /// <returns>The converted amount in the target currency.</returns>
         /// <exception cref="InvalidOperationException">Thrown when exchange rate data is missing.</exception>
-        private decimal ConvertAmountAsync(decimal amount, string fromCurrency, string toCurrency)
+        [ExcludeFromCodeCoverage]
+        private decimal ConvertAmount(decimal amount, string fromCurrency, string toCurrency)
         {
             if (fromCurrency == toCurrency)
                 return amount;

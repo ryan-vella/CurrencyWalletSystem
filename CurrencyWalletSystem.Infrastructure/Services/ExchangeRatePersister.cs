@@ -1,24 +1,22 @@
 ﻿using CurrencyWalletSystem.Gateway.Models;
-using CurrencyWalletSystem.Infrastructure.Data;
 using CurrencyWalletSystem.Infrastructure.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace CurrencyWalletSystem.Infrastructure.Services
 {
     public class ExchangeRatePersister : IExchangeRatePersister
     {
-        private readonly AppDbContext _dbContext;
+        private readonly ISqlExecutor _sqlExecutor;
         private readonly ILogger<ExchangeRatePersister> _logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ExchangeRatePersister"/> class.
         /// </summary>
-        /// <param name="dbContext">The application's database context.</param>
-        /// <param name="logger">The logger instance.</param>
-        public ExchangeRatePersister(AppDbContext dbContext, ILogger<ExchangeRatePersister> logger)
+        /// <param name="sqlExecutor">The SQL executor used to persist exchange rate data to the database.</param>
+        /// <param name="logger">The logger instance for logging information and errors.</param>
+        public ExchangeRatePersister(ISqlExecutor sqlExecutor, ILogger<ExchangeRatePersister> logger)
         {
-            _dbContext = dbContext;
+            _sqlExecutor = sqlExecutor;
             _logger = logger;
         }
 
@@ -37,7 +35,7 @@ namespace CurrencyWalletSystem.Infrastructure.Services
 
             try
             {
-                await _dbContext.Database.ExecuteSqlRawAsync(finalSql, parameters);
+                await _sqlExecutor.ExecuteAsync(finalSql, parameters);
                 _logger.LogInformation("Exchange rates persisted successfully.");
             }
             catch (Exception ex)

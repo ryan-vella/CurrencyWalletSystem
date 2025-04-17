@@ -6,9 +6,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Quartz;
+using System.Diagnostics.CodeAnalysis;
 
 namespace CurrencyWalletSystem.Infrastructure.Extensions
 {
+    [ExcludeFromCodeCoverage]
     public static class ServiceConfiguration
     {
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration config)
@@ -17,6 +19,8 @@ namespace CurrencyWalletSystem.Infrastructure.Extensions
                 options.UseSqlServer(config.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<IExchangeRatePersister, ExchangeRatePersister>();
+            services.AddScoped<IRawSqlExecutor, EfCoreRawSqlExecutor>();
+            services.AddScoped<ISqlExecutor, SqlExecutor>();
 
             return services;
         }
